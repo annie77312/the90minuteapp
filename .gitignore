@@ -1,0 +1,9 @@
+# folder
+.idea/
+.sass-cache/
+build/
+ext/
+touch/
+
+# files
+.DS_Store

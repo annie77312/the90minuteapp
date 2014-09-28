@@ -21,9 +21,18 @@ Ext.define('Tunes.view.main.Main', {
     title : 'iTunes Music Videos',
 
     items: [{
-        xtype : 'container',
-        region: 'center',
-        html  : 'videos'
+        xtype          : 'dataview',
+        region         : 'center',
+        autoScroll     : true,
+        itemTpl        : [
+            '<figure>',
+            '<img src="{image}" />',
+            '<figcaption><b>{title}</b><br/>{artist}</figcaption>',
+            '</figure>'
+        ].join(''),
+        itemCls        : 'video',
+        overItemCls    : 'overvideo',
+        selectedItemCls: 'selectedvideo'
     }, {
         xtype : 'container',
         region: 'west',

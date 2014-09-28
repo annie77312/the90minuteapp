@@ -27,9 +27,9 @@
     /**
      * The name of the theme for this application.
      */
-    
+
     "theme": "ext-theme-crisp-touch",
-    
+
     /**
      * The list of required packages (with optional versions; default is "latest").
      *
@@ -39,8 +39,7 @@
      *          "sencha-charts"
      *      ]
      */
-    "requires": [
-    ],
+    "requires": [],
 
     /**
      * Sass configuration properties.
@@ -114,7 +113,7 @@
             "path": "${ext.dir}/build/ext-all-rtl-debug.js"
         },
         {
-            "path": "app.js",
+            "path"  : "app.js",
             "bundle": true
         }
     ],
@@ -146,7 +145,7 @@
      */
     "css": [
         {
-            "path": "bootstrap.css",
+            "path"     : "bootstrap.css",
             "bootstrap": true
         }
     ],
@@ -175,17 +174,14 @@
 
 
     /**
-     * override objects for setting build environment specific 
+     * override objects for setting build environment specific
      * settings.
      */
-    "production": {
-    },
-    
-    "testing": {
-    },
-    
-    "development": {
-    },
+    "production": {},
+
+    "testing": {},
+
+    "development": {},
 
     /**
      *  Controls the output structure of bootstrap artifacts.  May be specified by a string:
@@ -213,10 +209,10 @@
      *
      */
     "bootstrap": {
-        "base": "${app.dir}",
-        "manifest": "bootstrap.json",
+        "base"       : "${app.dir}",
+        "manifest"   : "bootstrap.json",
         "microloader": "bootstrap.js",
-        "css": "bootstrap.css"
+        "css"        : "bootstrap.css"
     },
 
     /**
@@ -265,13 +261,13 @@
         /**
          * List of items in the CACHE MANIFEST section
          */
-        "cache": [
+        "cache"   : [
             "index.html"
         ],
         /**
          * List of items in the NETWORK section
          */
-        "network": [
+        "network" : [
             "*"
         ],
         /**
@@ -283,8 +279,7 @@
     /**
      * Extra resources to be copied along when build
      */
-    "resources": [
-    ],
+    "resources": [],
 
     /**
      * File / directory name matchers to ignore when copying to the builds, must be valid regular expressions
@@ -292,7 +287,6 @@
     "ignore": [
         "(^|/)CVS(/?$|/.*?$)"
     ],
-
     /**
      * Directory path to store all previous production builds. Note that the content generated inside this directory
      * must be kept intact for proper generation of deltas between updates
@@ -305,7 +299,7 @@
     "slicer": {
         "js": [
             {
-                "path": "${app.dir}/sass/example/custom.js",
+                "path"            : "${app.dir}/sass/example/custom.js",
                 "isWidgetManifest": true
             }
         ]

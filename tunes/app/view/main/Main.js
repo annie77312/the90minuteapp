@@ -1,12 +1,13 @@
 /**
  * @class   Tunes.view.main.Main
- * @extends Ext.container.Container
+ * @extends Ext.panel.Panel
  */
 Ext.define('Tunes.view.main.Main', {
-    extend: 'Ext.container.Container',
+    extend: 'Ext.panel.Panel',
     xtype : 'main',
 
     requires: [
+        'Ext.view.View',
         'Tunes.view.main.MainController',
         'Tunes.view.main.MainModel'
     ],
@@ -16,7 +17,22 @@ Ext.define('Tunes.view.main.Main', {
         type: 'main'
     },
 
-    layout: 'fit',
+    layout: 'border',
+    title : 'iTunes Music Videos',
 
-    items: []
+    items: [{
+        xtype : 'container',
+        region: 'center',
+        html  : 'videos'
+    }, {
+        xtype : 'container',
+        region: 'west',
+        width : 175,
+        html  : 'country list'
+    }, {
+        xtype : 'container',
+        region: 'east',
+        width : 400,
+        html  : 'video preview'
+    }]
 });

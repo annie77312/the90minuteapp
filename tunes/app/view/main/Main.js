@@ -1,47 +1,38 @@
 /**
- * This class is the main view for the application. It is specified in app.js as the
- * "autoCreateViewport" property. That setting automatically applies the "viewport"
- * plugin to promote that instance of this class to the body element.
- *
- * TODO - Replace this content of this view to suite the needs of your application.
+ * @class   Tunes.view.main.Main
+ * @extends Ext.panel.Panel
  */
 Ext.define('Tunes.view.main.Main', {
-    extend: 'Ext.container.Container',
+    extend: 'Ext.panel.Panel',
+    xtype : 'main',
+
     requires: [
+        'Ext.view.View',
         'Tunes.view.main.MainController',
         'Tunes.view.main.MainModel'
     ],
 
-    xtype: 'app-main',
-    
     controller: 'main',
-    viewModel: {
+    viewModel : {
         type: 'main'
     },
 
-    layout: {
-        type: 'border'
-    },
+    layout: 'border',
+    title : 'iTunes Music Videos',
 
     items: [{
-        xtype: 'panel',
-        bind: {
-            title: '{name}'
-        },
-        region: 'west',
-        html: '<ul><li>This area is commonly used for navigation, for example, using a "tree" component.</li></ul>',
-        width: 250,
-        split: true,
-        tbar: [{
-            text: 'Button',
-            handler: 'onClickButton'
-        }]
-    },{
+        xtype : 'container',
         region: 'center',
-        xtype: 'tabpanel',
-        items:[{
-            title: 'Tab 1',
-            html: '<h2>Content appropriate for the current navigation.</h2>'
-        }]
+        html  : 'videos'
+    }, {
+        xtype : 'container',
+        region: 'west',
+        width : 175,
+        html  : 'country list'
+    }, {
+        xtype : 'container',
+        region: 'east',
+        width : 400,
+        html  : 'video preview'
     }]
 });

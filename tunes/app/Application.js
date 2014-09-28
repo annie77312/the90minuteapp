@@ -5,14 +5,13 @@
  */
 Ext.define('Tunes.Application', {
     extend: 'Ext.app.Application',
-    
-    name: 'Tunes',
+    name  : 'Tunes',
 
     stores: [
-        // TODO: add global / shared stores here
+        // we don't use global stores in this app
     ],
-    
+
     launch: function () {
-        // TODO - Launch the application
+        // launch the application
     }
 });

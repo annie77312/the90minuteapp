@@ -1,14 +1,14 @@
 /**
- * This class is the view model for the Main view of the application.
+ * @class   Tunes.view.main.MainModel
+ * @extends Ext.app.ViewModel
  */
 Ext.define('Tunes.view.main.MainModel', {
     extend: 'Ext.app.ViewModel',
-
     alias: 'viewmodel.main',
 
-    data: {
-        name: 'Tunes'
-    }
+    data: {},
 
-    //TODO - add data, formulas and/or methods to support your view
+    formulas: {},
+
+    stores: {}
 });

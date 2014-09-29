@@ -1,5 +1,5 @@
 {
-    "node"     : true,
+    "node"     : fasle,
     "browser"  : true,
     "esnext"   : true,
     "bitwise"  : true,
@@ -15,15 +15,16 @@
     "regexp"   : true,
     "undef"    : true,
     "unused"   : true,
-    "strict"   : true,
+    "strict"   : false,
     "trailing" : true,
     "smarttabs": true,
 
     "evil" : false,
-    "devel": false,
-    "debug": false,
+    "devel": true,
+    "debug": true,
 
     "globals": {
-        "Ext": true
+        "Ext"    : true,
+        "console": true
     }
 }

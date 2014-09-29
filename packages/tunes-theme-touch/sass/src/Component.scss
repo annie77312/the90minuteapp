@@ -1,0 +1,43 @@
+// theme generated via Sencha CMD
+// <cmd>sencha generate theme -e ext-theme-crisp-touch tunes-theme-touch</cmd>
+
+// custom styling
+$video-bg-color : #FFFFFF;
+$video-font-color : invert($video-bg-color);
+$video-over-color : #3490AB;
+
+div.video {
+    float      : left;
+    text-align : center;
+    height     : 144px;
+    padding    : 2px 8px 8px 8px;
+    width      : 132px;
+    background : lighten($video-font-color, 64%);
+    color      : lighten($video-font-color, 32%);
+    opacity    : 0.6;
+    overflow   : hidden;
+    border     : 6px solid lighten($video-font-color, 64%);
+    margin     : 12px;
+
+    figure {
+        margin : 8px 0px 8px 0px;
+    }
+
+    figcaption {
+        font-size : 8pt;
+    }
+
+    &.overvideo {
+        border     : 6px solid $video-over-color;
+        opacity    : 1.0;
+        background : $video-bg-color;
+        color      : $video-over-color;
+    }
+}
+
+div.selectedvideo {
+    @extend div.video.overvideo;
+
+    border : 6px solid $base-color;
+    color  : $video-font-color;
+}

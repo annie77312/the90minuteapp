@@ -32,7 +32,10 @@ Ext.define('Tunes.view.main.Main', {
         ].join(''),
         itemCls        : 'video',
         overItemCls    : 'overvideo',
-        selectedItemCls: 'selectedvideo'
+        selectedItemCls: 'selectedvideo',
+        bind           : {
+            store: '{tunes}'
+        }
     }, {
         xtype : 'container',
         region: 'west',

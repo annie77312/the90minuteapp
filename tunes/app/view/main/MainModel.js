@@ -4,11 +4,20 @@
  */
 Ext.define('Tunes.view.main.MainModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.main',
+    alias : 'viewmodel.main',
+
+    requires: [
+        'Tunes.model.Tune'
+    ],
 
     data: {},
 
     formulas: {},
 
-    stores: {}
+    stores: {
+        tunes: {
+            model   : 'Tunes.model.Tune',
+            autoLoad: true
+        }
+    }
 });

@@ -77,3 +77,9 @@ div.selectedvideo {
         border : 6px solid $base-color;
     }
 }
+
+// overwrite
+.x-tree-icon-leaf {
+    background-image : none;
+    margin-left      : -48px;
+}

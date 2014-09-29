@@ -20,6 +20,7 @@ Ext.define('Tunes.view.main.MainModel', {
     stores: {
         tunes    : {
             model    : 'Tunes.model.Tune',
+            autoLoad : true,
             sorters  : ['artist'],
             listeners: {
                 beforeload: 'onBeforeTunesStoreLoad',

@@ -41,3 +41,23 @@ div.selectedvideo {
     border : 6px solid $base-color;
     color  : $video-font-color;
 }
+
+.preview {
+    * {
+        width : 90%;
+    }
+
+    h1 {
+        color     : $base-color;
+        font-size : 1.5em;
+    }
+
+    h2 {
+        color     : mix($base-color, $video-bg-color, 16%);
+        font-size : 1.2em;
+    }
+
+    video {
+        border : 6px solid $base-color;
+    }
+}

@@ -10,7 +10,9 @@ Ext.define('Tunes.view.main.MainModel', {
         'Tunes.model.Tune'
     ],
 
-    data: {},
+    data: {
+        tune: null
+    },
 
     formulas: {},
 

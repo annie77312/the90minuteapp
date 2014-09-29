@@ -20,8 +20,13 @@ Ext.define('Tunes.view.main.Main', {
     layout: 'border',
     title : 'iTunes Music Videos',
 
-    items: [{
-        xtype          : 'dataview',
+    defaults: {
+        xtype: 'dataview',
+        style: {
+            background: '#ffffff'
+        }
+    },
+    items   : [{
         region         : 'center',
         autoScroll     : true,
         itemTpl        : [
@@ -39,12 +44,12 @@ Ext.define('Tunes.view.main.Main', {
     }, {
         xtype : 'container',
         region: 'west',
-        width : 175,
+        width : 200,
         html  : 'country list'
     }, {
         xtype : 'container',
         region: 'east',
-        width : 400,
+        width : 425,
         html  : 'video preview'
     }]
 });

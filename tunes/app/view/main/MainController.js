@@ -8,14 +8,30 @@ Ext.define('Tunes.view.main.MainController', {
 
     requires: [],
 
+    /**
+     *
+     */
     onBeforeTunesStoreLoad: function () {
         var tunesView = this.lookupReference('tunesView');
 
         tunesView.setLoading(true);
     },
 
+    /**
+     *
+     */
     onTunesStoreLoad: function () {
-        var tunesView = this.lookupReference('tunesView');
+        var me = this,
+            tunesView = me.lookupReference('tunesView'),
+            breadcrumb = me.lookupReference('countriesBreadcrumb'),
+            us;
+
+        // we set to US if nothing else is selected
+        if (breadcrumb.getSelection().get('text') === 'Root') {
+            us = me.getStore('countries').findRecord('id', 'us');
+
+            breadcrumb.setSelection(us);
+        }
 
         tunesView.setLoading(false);
     },
@@ -63,19 +79,16 @@ Ext.define('Tunes.view.main.MainController', {
     },
 
     /**
-     * @param {Ext.selection.RowModel}  selModel
-     * @param {Ext.data.Model}          record
-     * @param {Number}                  index
-     * @param {Object}                  eOpts
+     * @param {Ext.selection.RowModel|Ext.toolbar.Breadcrumb}   cmp
+     * @param {Ext.data.Model}                                  record
      */
-    onCountrySelect: function (selModel, record, index, eOpts) {
-        // abort for groups
-        if (!record.isLeaf()) {
+    onCountrySelect: function (cmp, record) {
+        if (!record) {
             return;
         }
 
         // <debug>
-        console.log('onCountrySelect', selModel, record, index, eOpts);
+        console.log('onCountrySelect', cmp, record);
         // </debug>
 
         var me = this,
@@ -83,6 +96,12 @@ Ext.define('Tunes.view.main.MainController', {
             tunesView = me.lookupReference('tunesView'),
             tunesStore = tunesView.getStore(),
             tunesProxy = tunesStore.getProxy();
+
+        me.getViewModel().set('tune', null);
+
+        if (!country || country === 'root') {
+            return;
+        }
 
         tunesProxy.setUrl('https://itunes.apple.com/' + country + '/rss/topmusicvideos/limit=100/explicit=true/json');
 

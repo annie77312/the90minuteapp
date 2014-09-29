@@ -8,10 +8,12 @@ Ext.define('Tunes.view.main.Main', {
 
     requires: [
         'Ext.tree.Panel',
+        'Ext.toolbar.Breadcrumb',
         'Ext.view.View',
         'Tunes.view.main.MainController',
         'Tunes.view.main.MainModel'
     ],
+    mixin   : 'Ext.mixin.Responsive',
 
     controller: 'main',
     viewModel : {
@@ -22,15 +24,15 @@ Ext.define('Tunes.view.main.Main', {
     title : 'iTunes Music Videos',
 
     defaults: {
-        style: {
+        style     : {
             background: '#ffffff'
-        }
+        },
+        autoScroll: true
     },
     items   : [{
         xtype          : 'dataview',
         region         : 'center',
         reference      : 'tunesView',
-        autoScroll     : true,
         itemTpl        : [
             '<figure>',
             '<img src="{image}" />',
@@ -53,25 +55,63 @@ Ext.define('Tunes.view.main.Main', {
             deselect    : 'onVideoDeselect'
         }
     }, {
-        xtype    : 'treepanel',
-        region   : 'west',
-        reference: 'countriesTree',
-        width    : 250,
-        useArrows: true,
-        iconCls  : '',
-        bind     : {
+        xtype           : 'breadcrumb',
+        region          : 'north',
+        plugins         : ['responsive'],
+        responsiveConfig: {
+            wide: {
+                hidden: true
+            },
+            tall: {
+                hidden: false
+            }
+        },
+        reference       : 'countriesBreadcrumb',
+        height          : 32,
+        bind            : {
             store: '{countries}'
         },
-        listeners: {
+        listeners       : {
+            selectionchange: 'onCountrySelect'
+        }
+    }, {
+        xtype           : 'treepanel',
+        region          : 'west',
+        plugins         : ['responsive'],
+        responsiveConfig: {
+            wide: {
+                hidden: false
+            },
+            tall: {
+                hidden: true
+            }
+        },
+        reference       : 'countriesTree',
+        width           : 175,
+        useArrows       : true,
+        iconCls         : '',
+        bind            : {
+            store: '{countries}'
+        },
+        listeners       : {
             select: 'onCountrySelect'
         }
     }, {
-        xtype    : 'container',
-        region   : 'east',
-        reference: 'tunesPreview',
-        width    : 550,
-        cls      : 'preview',
-        tpl      : [
+        xtype           : 'container',
+        plugins         : ['responsive'],
+        responsiveConfig: {
+            wide: {
+                region: 'east',
+                width : 380
+            },
+            tall: {
+                region: 'south',
+                height: 300
+            }
+        },
+        reference       : 'tunesPreview',
+        cls             : 'preview',
+        tpl             : [
             '<tpl if="this.isData(values)">',
             '<h1>{title}</h1>',
             '<h2>{artist}</h2>',
@@ -84,7 +124,7 @@ Ext.define('Tunes.view.main.Main', {
                 }
             }
         ],
-        bind     : {
+        bind            : {
             data: '{tune}'
         }
     }]

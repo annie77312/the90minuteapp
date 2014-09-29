@@ -25,6 +25,20 @@ div.video {
 
     figcaption {
         font-size : 8pt;
+
+        .title {
+            font-weight   : bold;
+            width         : 100px;
+            white-space   : nowrap;
+            overflow      : hidden;
+            text-overflow : ellipsis;
+        }
+
+        .artist {
+            @extend .title;
+
+            font-weight : normal;
+        }
     }
 
     &.overvideo {
@@ -53,7 +67,7 @@ div.selectedvideo {
     }
 
     h2 {
-        color     : mix($base-color, $video-bg-color, 16%);
+        color     : mix($base-color, $video-bg-color, 32%);
         font-size : 1.2em;
     }
 

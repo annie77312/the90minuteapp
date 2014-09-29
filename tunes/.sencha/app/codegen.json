@@ -277,6 +277,18 @@
         "modelNamespace": "Tunes.model",
         "name": "Tune"
       }
+    },
+    "app/model/Country.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "Tunes",
+        "baseClass": "Ext.data.Model",
+        "fields": "id:auto:null,text:auto:null",
+        "modelFileName": "Country",
+        "modelNamespace": "Tunes.model",
+        "name": "Country"
+      }
     }
   }
 }

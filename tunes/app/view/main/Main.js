@@ -7,6 +7,7 @@ Ext.define('Tunes.view.main.Main', {
     xtype : 'main',
 
     requires: [
+        'Ext.tree.Panel',
         'Ext.view.View',
         'Tunes.view.main.MainController',
         'Tunes.view.main.MainModel'
@@ -28,11 +29,15 @@ Ext.define('Tunes.view.main.Main', {
     items   : [{
         xtype          : 'dataview',
         region         : 'center',
+        reference      : 'tunesView',
         autoScroll     : true,
         itemTpl        : [
             '<figure>',
             '<img src="{image}" />',
-            '<figcaption><b>{title}</b><br/>{artist}</figcaption>',
+            '<figcaption>',
+            '<p class="title">{title}</p>',
+            '<p class="artist">{artist}</p>',
+            '</figcaption>',
             '</figure>'
         ],
         itemCls        : 'video',
@@ -43,24 +48,34 @@ Ext.define('Tunes.view.main.Main', {
             store: '{tunes}'
         },
         listeners      : {
-            itemdblclick: 'onItemDblClick',
-            select      : 'onItemSelect',
-            deselect    : 'onItemDeselect'
+            itemdblclick: 'onVideoDblClick',
+            select      : 'onVideoSelect',
+            deselect    : 'onVideoDeselect'
         }
     }, {
-        region: 'west',
-        width : 200,
-        html  : 'country list'
+        xtype    : 'treepanel',
+        region   : 'west',
+        reference: 'countriesTree',
+        width    : 250,
+        useArrows: true,
+        iconCls  : '',
+        bind     : {
+            store: '{countries}'
+        },
+        listeners: {
+            select: 'onCountrySelect'
+        }
     }, {
-        xtype : 'container',
-        region: 'east',
-        width : 425,
-        cls   : 'preview',
-        tpl   : [
+        xtype    : 'container',
+        region   : 'east',
+        reference: 'tunesPreview',
+        width    : 550,
+        cls      : 'preview',
+        tpl      : [
             '<tpl if="this.isData(values)">',
             '<h1>{title}</h1>',
             '<h2>{artist}</h2>',
-            '<video autoplay controls muted preload="auto">',
+            '<video autoplay controls preload="auto">',
             '<source src="{preview}" type="{codex}">',
             '</video>',
             '</tpl>', {
@@ -69,7 +84,7 @@ Ext.define('Tunes.view.main.Main', {
                 }
             }
         ],
-        bind  : {
+        bind     : {
             data: '{tune}'
         }
     }]

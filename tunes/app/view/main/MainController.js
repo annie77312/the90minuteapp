@@ -8,6 +8,18 @@ Ext.define('Tunes.view.main.MainController', {
 
     requires: [],
 
+    onBeforeTunesStoreLoad: function () {
+        var tunesView = this.lookupReference('tunesView');
+
+        tunesView.setLoading(true);
+    },
+
+    onTunesStoreLoad: function () {
+        var tunesView = this.lookupReference('tunesView');
+
+        tunesView.setLoading(false);
+    },
+
     /**
      * @param {Ext.view.View}       view
      * @param {Tunes.model.Tune}    record
@@ -16,9 +28,9 @@ Ext.define('Tunes.view.main.MainController', {
      * @param {Ext.event.Event}     e
      * @param {Object}              eOpts
      */
-    onItemDblClick: function (view, record, item, index, e, eOpts) {
+    onVideoDblClick: function (view, record, item, index, e, eOpts) {
         // <debug>
-        console.log('dblclick', view, record, item, index, e, eOpts);
+        console.log('onVideoDblClick', view, record, item, index, e, eOpts);
         // </debug>
 
         // TODO
@@ -29,9 +41,9 @@ Ext.define('Tunes.view.main.MainController', {
      * @param {Tunes.model.Tune}    record
      * @param {Object}              eOpts
      */
-    onItemSelect: function (view, record, eOpts) {
+    onVideoSelect: function (view, record, eOpts) {
         // <debug>
-        console.log('select', view, record, eOpts);
+        console.log('onVideoSelect', view, record, eOpts);
         // </debug>
 
         this.getViewModel().set('tune', record);
@@ -42,11 +54,38 @@ Ext.define('Tunes.view.main.MainController', {
      * @param {Tunes.model.Tune}    record
      * @param {Object}              eOpts
      */
-    onItemDeselect: function (view, record, eOpts) {
+    onVideoDeselect: function (view, record, eOpts) {
         // <debug>
-        console.log('deselect', view, record, eOpts);
+        console.log('onVideoDeselect', view, record, eOpts);
         // </debug>
 
         this.getViewModel().set('tune', null);
+    },
+
+    /**
+     * @param {Ext.selection.RowModel}  selModel
+     * @param {Ext.data.Model}          record
+     * @param {Number}                  index
+     * @param {Object}                  eOpts
+     */
+    onCountrySelect: function (selModel, record, index, eOpts) {
+        // abort for groups
+        if (!record.isLeaf()) {
+            return;
+        }
+
+        // <debug>
+        console.log('onCountrySelect', selModel, record, index, eOpts);
+        // </debug>
+
+        var me = this,
+            country = record.get('id'),
+            tunesView = me.lookupReference('tunesView'),
+            tunesStore = tunesView.getStore(),
+            tunesProxy = tunesStore.getProxy();
+
+        tunesProxy.setUrl('https://itunes.apple.com/' + country + '/rss/topmusicvideos/limit=100/explicit=true/json');
+
+        tunesStore.load();
     }
 });
